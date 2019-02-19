@@ -3,6 +3,7 @@ package com.clubededescontoclubededesconto.dto;
 import java.io.Serializable;
 
 import com.clubededescontoclubededesconto.domain.Loja;
+import com.clubededescontoclubededesconto.service.cep.EnderecoTO;
 
 public class LojaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,6 +11,7 @@ public class LojaDTO implements Serializable {
 	private String id;
 	private String nome;
 	private String telefone;
+	private EnderecoTO endereco;
 
 	public LojaDTO() {
 	}
@@ -18,6 +20,7 @@ public class LojaDTO implements Serializable {
 		id = obj.getId();
 		nome = obj.getNome();
 		telefone = obj.getTelefone();
+		endereco = (obj.getEndereco());
 	}
 
 	public String getId() {
@@ -46,6 +49,14 @@ public class LojaDTO implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public EnderecoTO getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoTO endereco) {
+		this.endereco = endereco;
 	}
 
 }

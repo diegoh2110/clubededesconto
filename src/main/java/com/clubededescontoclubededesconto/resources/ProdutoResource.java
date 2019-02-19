@@ -13,41 +13,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.clubededescontoclubededesconto.domain.Loja;
-import com.clubededescontoclubededesconto.dto.LojaDTO;
-import com.clubededescontoclubededesconto.service.LojaService;
+import com.clubededescontoclubededesconto.domain.Produto;
+import com.clubededescontoclubededesconto.dto.ProdutoDTO;
+import com.clubededescontoclubededesconto.service.ProdutoService;
 
 @RestController
-@RequestMapping(value = "/lojas")
-public class LojaResource {
-
+@RequestMapping(value="/produtos")
+public class ProdutoResource {
+	
 	@Autowired
-	private LojaService service;
-
+	private ProdutoService service;
+	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<LojaDTO>> findAll() {
-		List<Loja> list = service.findAll();
-		List<LojaDTO> listDto = list.stream().map(x -> new LojaDTO(x)).collect(Collectors.toList());
+	public ResponseEntity<List<ProdutoDTO>> findAll() {
+		List<Produto> list = service.findAll();
+		List<ProdutoDTO> listDto = list.stream().map(x -> new ProdutoDTO(x)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<LojaDTO> findById(@PathVariable String id) {
-		Loja obj = service.findById(id);
-		return ResponseEntity.ok().body(new LojaDTO(obj));
+	public ResponseEntity<ProdutoDTO> findById(@PathVariable String id) {
+		Produto obj = service.findById(id);
+		return ResponseEntity.ok().body(new ProdutoDTO(obj));
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody LojaDTO objDto) {
-		Loja obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> insert(@RequestBody ProdutoDTO objDto) {
+		Produto obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody LojaDTO objDto, @PathVariable String id) {
-		Loja obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> update(@RequestBody ProdutoDTO objDto, @PathVariable String id) {
+		Produto obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

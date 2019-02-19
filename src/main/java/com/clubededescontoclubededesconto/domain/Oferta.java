@@ -1,31 +1,28 @@
 package com.clubededescontoclubededesconto.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.clubededescontoclubededesconto.service.cep.EnderecoTO;
-
 @Document
-public class Loja implements Serializable {
+public class Oferta implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	private String id;
-	private String nome;
-	private String telefone;
-	private EnderecoTO endereco;
-
-	public Loja() {
+	private Date inicio;
+	private Date termino;
+	
+	public Oferta() {
 	}
 
-	public Loja(String id, String nome, String telefone, EnderecoTO endereco) {
+	public Oferta(String id, Date inicio, Date termino) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.endereco = endereco;
+		this.inicio = inicio;
+		this.termino = termino;
 	}
 
 	public String getId() {
@@ -36,28 +33,20 @@ public class Loja implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Date getInicio() {
+		return inicio;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public Date getTermino() {
+		return termino;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public EnderecoTO getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(EnderecoTO endereco) {
-		this.endereco = endereco;
+	public void setTermino(Date termino) {
+		this.termino = termino;
 	}
 
 	@Override
@@ -76,7 +65,7 @@ public class Loja implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Loja other = (Loja) obj;
+		Oferta other = (Oferta) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -84,5 +73,6 @@ public class Loja implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
 }

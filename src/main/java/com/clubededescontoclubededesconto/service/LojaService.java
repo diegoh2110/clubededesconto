@@ -37,7 +37,7 @@ public class LojaService {
 	}
 
 	public Loja fromDTO(LojaDTO objDto) {
-		return new Loja(objDto.getId(), objDto.getNome(), objDto.getTelefone());
+		return new Loja(objDto.getId(), objDto.getNome(), objDto.getTelefone(), objDto.getEndereco());
 	}
 
 	public Loja update(Loja obj) {

@@ -7,22 +7,70 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Oferta implements Serializable{
+public class Oferta implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String id;
+	private String produtoId;
 	private Date inicio;
 	private Date termino;
-	
+	private OfertaPorValor ofertaValor;
+	private OfertaPorQuantidade ofertaQuantidade;
+	private OfertaPorCombo ofertaCombo;
+	private OfertaAtacado ofertaAtacado;
+
 	public Oferta() {
 	}
 
-	public Oferta(String id, Date inicio, Date termino) {
+	public Oferta(String id,String produtoId, Date inicio, Date termino, OfertaPorValor ofertaValor) {
 		super();
 		this.id = id;
+		this.produtoId = produtoId;
 		this.inicio = inicio;
 		this.termino = termino;
+		this.ofertaValor = ofertaValor;
+	}
+
+	public Oferta(String id,String produtoId, Date inicio, Date termino, OfertaPorQuantidade ofertaQuantidade) {
+		super();
+		this.id = id;
+		this.produtoId = produtoId;
+		this.inicio = inicio;
+		this.termino = termino;
+		this.ofertaQuantidade = ofertaQuantidade;
+	}
+
+	public Oferta(String id,String produtoId, Date inicio, Date termino, OfertaPorCombo ofertaCombo) {
+		super();
+		this.id = id;
+		this.produtoId = produtoId;
+		this.inicio = inicio;
+		this.termino = termino;
+		this.ofertaCombo = ofertaCombo;
+	}
+
+	public Oferta(String id,String produtoId, Date inicio, Date termino, OfertaAtacado ofertaAtacado) {
+		super();
+		this.id = id;
+		this.produtoId = produtoId;
+		this.inicio = inicio;
+		this.termino = termino;
+		this.ofertaAtacado = ofertaAtacado;
+	}
+	
+
+	public Oferta(String id, String produtoId, Date inicio, Date termino, OfertaPorValor ofertaValor,
+			OfertaPorQuantidade ofertaQuantidade, OfertaPorCombo ofertaCombo, OfertaAtacado ofertaAtacado) {
+		super();
+		this.id = id;
+		this.produtoId = produtoId;
+		this.inicio = inicio;
+		this.termino = termino;
+		this.ofertaValor = ofertaValor;
+		this.ofertaQuantidade = ofertaQuantidade;
+		this.ofertaCombo = ofertaCombo;
+		this.ofertaAtacado = ofertaAtacado;
 	}
 
 	public String getId() {
@@ -31,6 +79,14 @@ public class Oferta implements Serializable{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getProdutoId() {
+		return produtoId;
+	}
+
+	public void setProdutoId(String produtoId) {
+		this.produtoId = produtoId;
 	}
 
 	public Date getInicio() {
@@ -47,6 +103,38 @@ public class Oferta implements Serializable{
 
 	public void setTermino(Date termino) {
 		this.termino = termino;
+	}
+
+	public OfertaPorValor getOfertaValor() {
+		return ofertaValor;
+	}
+
+	public void setOfertaValor(OfertaPorValor ofertaValor) {
+		this.ofertaValor = ofertaValor;
+	}
+
+	public OfertaPorQuantidade getOfertaQuantidade() {
+		return ofertaQuantidade;
+	}
+
+	public void setOfertaQuantidade(OfertaPorQuantidade ofertaQuantidade) {
+		this.ofertaQuantidade = ofertaQuantidade;
+	}
+
+	public OfertaPorCombo getOfertaCombo() {
+		return ofertaCombo;
+	}
+
+	public void setOfertaCombo(OfertaPorCombo ofertaCombo) {
+		this.ofertaCombo = ofertaCombo;
+	}
+
+	public OfertaAtacado getOfertaAtacado() {
+		return ofertaAtacado;
+	}
+
+	public void setOfertaAtacado(OfertaAtacado ofertaAtacado) {
+		this.ofertaAtacado = ofertaAtacado;
 	}
 
 	@Override
@@ -73,6 +161,5 @@ public class Oferta implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }

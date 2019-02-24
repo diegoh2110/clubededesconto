@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import com.clubededescontoclubededesconto.domain.Contrato;
 import com.clubededescontoclubededesconto.domain.Loja;
 import com.clubededescontoclubededesconto.domain.Oferta;
 import com.clubededescontoclubededesconto.domain.OfertaAtacado;
@@ -17,6 +18,7 @@ import com.clubededescontoclubededesconto.domain.OfertaPorQuantidade;
 import com.clubededescontoclubededesconto.domain.OfertaPorValor;
 import com.clubededescontoclubededesconto.domain.Panfleto;
 import com.clubededescontoclubededesconto.domain.Produto;
+import com.clubededescontoclubededesconto.repository.ContratoRepository;
 import com.clubededescontoclubededesconto.repository.LojaRepository;
 import com.clubededescontoclubededesconto.repository.OfertaAtacadoRepository;
 import com.clubededescontoclubededesconto.repository.OfertaComboRepository;
@@ -55,6 +57,9 @@ public class Instantiation implements CommandLineRunner{
 	
 	@Autowired
 	private PanfletoRepository panfletoRepository;
+	
+	@Autowired
+	private ContratoRepository contratoRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -127,6 +132,12 @@ public class Instantiation implements CommandLineRunner{
 		Panfleto panfleto3 = new Panfleto(null, "Panfleto 3", sdf.parse("23/02/2019"), sdf.parse("30/02/2019"), "/mnt/dados/diego/arquivo1.pdf");
 		
 		panfletoRepository.saveAll(Arrays.asList(panfleto1,panfleto2,panfleto3));
+		
+		contratoRepository.deleteAll();
+		
+		Contrato contrato = new Contrato(null, "Contrato exemplo");
+		
+		contratoRepository.save(contrato);
 	}
 
 }
